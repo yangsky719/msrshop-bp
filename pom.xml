@@ -13,6 +13,13 @@ https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <!-- 聚合其他的子工程模块-->
     <modules>
-
+        <module>renren-fast</module>
+        <module>renren-generator</module>
+        <module>msrshop-coupon</module>
+        <module>msrshop-product</module>
+        <module>msrshop-memeber</module>
+        <module>msrshop-order</module>
+        <module>msrshop-ware</module>
+        <module>msrshop-common</module>
     </modules>
 </project>
