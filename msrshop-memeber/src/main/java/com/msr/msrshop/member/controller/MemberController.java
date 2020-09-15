@@ -4,7 +4,10 @@ import java.util.Arrays;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.msr.msrshop.member.feign.CouponFeignService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,12 +28,34 @@ import com.msr.common.utils.R;
  * @email yang@gmail.com
  * @date 2020-09-10 14:31:48
  */
+@RefreshScope
 @RestController
 @RequestMapping("member/member")
 public class MemberController {
     @Autowired
     private MemberService memberService;
 
+    @Value("${member.name}")
+    private String name;
+    @Value("${member.age}")
+    private int age;
+
+    @Autowired
+    private CouponFeignService couponFeignService;
+
+    @RequestMapping("/config")
+    public R testConfig(){
+        String str =this.name + "|" + this.age;
+
+        return R.ok().put("str",str);
+    }
+    @RequestMapping("/coupons")
+    public R test(){
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setNickname("张三");
+        R membercoupons = couponFeignService.membercoupons();
+        return R.ok().put("member",memberEntity).put("coupons",membercoupons.get("coupons"));
+    }
     /**
      * 列表
      */

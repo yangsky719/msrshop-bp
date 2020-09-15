@@ -21,5 +21,6 @@ https://maven.apache.org/xsd/maven-4.0.0.xsd">
         <module>msrshop-order</module>
         <module>msrshop-ware</module>
         <module>msrshop-common</module>
+        <module>msrshop-gateway</module>
     </modules>
 </project>
